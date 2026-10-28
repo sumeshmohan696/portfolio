@@ -383,9 +383,9 @@ body {
 /* METRICS STRIP */
 .metrics-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  max-width: 600px;
+  max-width: 680px;
 }
 
 .metric-box {
@@ -1073,6 +1073,359 @@ body {
   color: var(--text-dim);
 }
 
+.ai-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ai-repo-ref {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.ai-repo-ref svg {
+  fill: var(--text-muted);
+}
+
+.ai-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--theme-primary);
+  text-decoration: none;
+  background: rgba(0, 229, 201, 0.08);
+  border: 1px solid var(--theme-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+}
+
+.ai-action-btn:hover {
+  background: var(--theme-primary);
+  color: #000000;
+  box-shadow: 0 0 14px var(--theme-glow);
+  transform: translateY(-2px);
+}
+
+/* GIT REPOSITORIES SHOWCASE WITHIN SECTION 4 */
+.git-repos-container {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.git-repos-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.git-section-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-pure);
+  margin-top: 4px;
+}
+
+.git-section-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 6px;
+  max-width: 650px;
+}
+
+.git-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--text-pure);
+  transition: var(--transition-fast);
+}
+
+.git-profile-link:hover {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 20px var(--theme-glow);
+  transform: translateY(-2px);
+}
+
+.git-profile-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.git-profile-name {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--theme-primary);
+}
+
+.git-profile-status {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+/* REPO FILTER STRIP */
+.repo-filter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.repo-filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.repo-filter-btn:hover {
+  border-color: rgba(0, 229, 201, 0.4);
+  color: var(--text-pure);
+  background: rgba(0, 229, 201, 0.06);
+}
+
+.repo-filter-btn.active {
+  background: rgba(0, 229, 201, 0.14);
+  border-color: var(--theme-primary);
+  color: var(--theme-primary);
+  box-shadow: 0 0 16px rgba(0, 229, 201, 0.25);
+}
+
+/* REPOS BENTO GRID */
+.repos-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.repo-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.repo-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--theme-primary), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.repo-card:hover {
+  border-color: var(--theme-border);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px var(--theme-glow);
+  transform: translateY(-4px);
+}
+
+.repo-card:hover::before {
+  opacity: 1;
+}
+
+.repo-card.filter-hidden {
+  display: none !important;
+}
+
+.repo-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.repo-path-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.repo-path-wrap svg {
+  fill: var(--theme-primary);
+}
+
+.repo-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+
+.repo-badge.public {
+  background: rgba(0, 229, 201, 0.1);
+  border: 1px solid rgba(0, 229, 201, 0.35);
+  color: var(--theme-primary);
+}
+
+.repo-badge.enterprise {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-pure);
+}
+
+.repo-badge.daemon {
+  background: rgba(0, 191, 165, 0.12);
+  border: 1px solid rgba(0, 191, 165, 0.4);
+  color: #00e5c9;
+}
+
+.repo-card-title {
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.repo-card-desc {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+
+.repo-metrics-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.repo-metric-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--theme-primary);
+  background: rgba(0, 229, 201, 0.06);
+  border: 1px solid rgba(0, 229, 201, 0.18);
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+}
+
+.repo-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.lang-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-right: 6px;
+}
+
+.lang-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.lang-dot.python { background-color: #3572A5; }
+.lang-dot.ts { background-color: #3178C6; }
+.lang-dot.js { background-color: #F7DF1E; }
+.lang-dot.docker { background-color: #384d54; }
+.lang-dot.php { background-color: #4F5D95; }
+.lang-dot.dart { background-color: #00B4AB; }
+
+.repo-tag {
+  font-family: var(--font-mono);
+  font-size: 0.70rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+}
+
+.repo-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.repo-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--theme-primary);
+  text-decoration: none;
+  padding: 6px 14px;
+  background: rgba(0, 229, 201, 0.08);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+}
+
+.repo-link-btn:hover {
+  background: var(--theme-primary);
+  color: #000000;
+  box-shadow: 0 0 16px var(--theme-glow);
+  transform: translateX(2px);
+}
+
+
 /* ============================================================
    4. 5-STAGE INTERACTIVE CI/CD ENGINE
    ============================================================ */
@@ -1589,6 +1942,9 @@ body {
 
 /* RESPONSIVENESS */
 @media (max-width: 900px) {
+  .metrics-strip { grid-template-columns: repeat(2, 1fr); }
+  .repos-bento-grid { grid-template-columns: 1fr; }
+  .git-repos-header { flex-direction: column; align-items: flex-start; }
   .hero-grid { grid-template-columns: 1fr; }
   .cicd-stepper-strip { grid-template-columns: 1fr; }
   .cicd-inspector-wrap { grid-template-columns: 1fr; }

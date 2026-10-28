@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPromptStudio();
   initOperatorCLI();
   init3dCardTilt();
+  initRepoFilters();
 });
 
 /* ---------------- 1. THREE.JS 3D DATACENTER AISLE & ZOOMING SERVER ---------------- */
@@ -290,7 +291,7 @@ const SECTIONS_CONFIG = [
   },
   {
     id: "ai-workloads",
-    label: "04 // AUTONOMOUS AI SYSTEMS",
+    label: "04 // AI SYSTEMS & GIT REPOS",
     camX: -30, camY: 20, camZ: 60, lookY: 15,
     primary: "#00e5c9", secondary: "#ffffff",
     glow: "rgba(0, 229, 201, 0.35)",
@@ -745,11 +746,38 @@ function init3dCardTilt() {
   });
 }
 
+
+/* ---------------- 7B. REPOSITORIES ECOSYSTEM FILTERING ---------------- */
+function initRepoFilters() {
+  const filterBtns = document.querySelectorAll('.repo-filter-btn');
+  const repoCards = document.querySelectorAll('.repo-card');
+  if (!filterBtns.length || !repoCards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+      repoCards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          card.classList.remove('filter-hidden');
+        } else {
+          card.classList.add('filter-hidden');
+        }
+      });
+    });
+  });
+}
+
 /* ---------------- 8. OPERATOR CONSOLE CLI ---------------- */
 const CLI_COMMANDS = {
   help: () => [
     "=== OPERATOR CONSOLE CLI (sumeshmohan) ===",
     "Available commands:",
+    "  repos       - Inspect all 8 production Git repositories & open-source codebases",
+    "  beetstack   - Beetstack IT Solutions organization architecture & SaaS systems",
     "  prompts     - Inspect advanced prompt engineering architectures & ReAct loops",
     "  experience  - Full-strength PanApps & Reliance Jio career history",
     "  panapps     - Detailed 10 pillars of DevOps engineering at PanApps",
@@ -766,6 +794,39 @@ const CLI_COMMANDS = {
     "  uptime      - Verified 99.9% uptime SLA production record",
     "  contact     - Direct communication channels (Email, Phone, LinkedIn)",
     "  clear       - Clear the console screen"
+  ],
+  repos: () => [
+    "=== PRODUCTION GIT REPOSITORIES & OPEN SOURCE (@sumeshmohan696) ===",
+    "-------------------------------------------------------------------------------------",
+    "REPO NAME                               VISIBILITY    PRIMARY STACK         METRIC / STATUS",
+    "-------------------------------------------------------------------------------------",
+    "sumeshmohan696/Ai-agent                Public        Python / Ollama       Sub-500ms Voice Synthesis",
+    "sumeshmohan696/tech-news-bot           Production    Python / Gemini API   24/7 Cloud Daemon",
+    "sumeshmohan696/portfolio               Public        Three.js / WebGL      60 FPS 3D Corridor",
+    "beetstack-solution/beetstack           Public        TypeScript / Next.js  Enterprise SaaS Hub",
+    "beetstack-solution/dnm-frontend        Enterprise    TypeScript / React    Insurance Management UI",
+    "beetstack-solution/SkolaByte-Master    Public        Dockerfile / TS       Multi-Tenant ERP",
+    "beetstack-solution/DSC-Exam-Portal     Enterprise    PHP / MySQL           High-Concurrency Engine",
+    "beetstack-solution/garage-billing      Enterprise    PHP / MySQL           Automated Workshop Invoicing",
+    "-------------------------------------------------------------------------------------",
+    "Profile: https://github.com/sumeshmohan696 | Org: https://github.com/beetstack-solution",
+    "Type 'friday', 'technews', or 'beetstack' for deep-dive technical specs."
+  ],
+  git: () => CLI_COMMANDS.repos(),
+  github: () => CLI_COMMANDS.repos(),
+  beetstack: () => [
+    "BEETSTACK IT SOLUTIONS ARCHITECTURE (@beetstack-solution):",
+    "  * beetstack: Corporate SaaS platform engineered in TypeScript & Next.js.",
+    "  * insurance-agency-management-frontend: Modern insurance portal with high-density data tables.",
+    "  * SkolaByte: Multi-tenant containerized school ERP distribution on Docker.",
+    "  * DSC-Exam-Portal: High-concurrency examination management engine with automated grading.",
+    "  * garage-billing-estimation-system: Vehicle workshop estimation and financial invoice tracking."
+  ],
+  skolabyte: () => [
+    "SKOLABYTE MULTI-TENANT CLOUD ECOSYSTEM:",
+    "  * Frontend: Containerized master distribution (Dockerfile + TypeScript).",
+    "  * Backend: RESTful API microservices powering admissions, grading, and attendance.",
+    "  * Architecture: Multi-tenant database isolation, Docker Compose orchestration."
   ],
   prompts: () => [
     "ADVANCED PROMPT ENGINEERING CAPABILITIES:",
